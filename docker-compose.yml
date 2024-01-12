@@ -1,15 +1,28 @@
-version: '3.8'
-
+version: '3.9'
 services:
-  postgres:
-    container_name: gestao_vagas_db
+  db:
     image: postgres
-    ports:
-      - 5423:5432
+    container_name: gestao_vagas_postgres
+    restart: always
     environment:
-      - POSTGRES_USER=admin
-      - POSTGRES_PASSWORD=admin
-      - POSTGRES_DB=gestao_vagas
+      POSTGRES_PASSWORD: admin
+      POSTGRES_USER: admin
+      POSTGRES_DB: gestao_vagas
+    volumes:
+      - postgres-volume:/var/lib/postgresql/data
+    ports:
+      - 5433:5432
+    networks:
+      - dev-network
 
+networks:
+  dev-network:
+    driver: bridge
 
-
+volumes:
+  postgres-volume:
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: 'D:\docker\novoVolume'
