@@ -1,5 +1,6 @@
 package br.com.gabriel.gestao_vagas.modules.company.service;
 
+import br.com.gabriel.gestao_vagas.modules.candidate.dto.AuthCandidateResponseDTO;
 import br.com.gabriel.gestao_vagas.modules.company.domain.Company;
 import br.com.gabriel.gestao_vagas.modules.company.dto.AuthDTO;
 import br.com.gabriel.gestao_vagas.modules.company.repository.CompanyRepository;
@@ -10,9 +11,9 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
 import javax.naming.AuthenticationException;
-import java.util.Optional;
+import java.time.Duration;
+import java.time.Instant;
 
 @Service
 public class CompanyAuth {
@@ -28,7 +29,7 @@ public class CompanyAuth {
 
     public String auth(AuthDTO authCompanyDTO) throws AuthenticationException {
         Company companyFound = companyRepository.findByUsername(authCompanyDTO.username())
-                         .orElseThrow(() -> new UsernameNotFoundException("Company not found"));
+                         .orElseThrow(() -> new UsernameNotFoundException("Username/password incorrect"));
 
         boolean passwordMatches = passwordEncoder.matches(authCompanyDTO.password(),companyFound.getPassword());
 
@@ -38,8 +39,9 @@ public class CompanyAuth {
 
         Algorithm algorithm = Algorithm.HMAC256(secretKey);
         return JWT.create()
-           .withIssuer("javagas")
-           .withSubject(companyFound.getId().toString())
-           .sign(algorithm);
+                          .withIssuer("javagas")
+                          .withSubject(companyFound.getId().toString())
+                          .withExpiresAt(Instant.now().plus(Duration.ofHours(2)))
+                          .sign(algorithm);
     }
 }
