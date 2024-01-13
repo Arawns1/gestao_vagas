@@ -1,0 +1,25 @@
+_id: req_cd7db55e906e4f0f9f44f14d682a70b4
+type: Request
+parentId: fld_503b0620330e4319b6c04d8994524f57
+modified: 1705185118910
+created: 1705181564269
+url: "{{ _.baseUrl }}/candidate"
+name: Find user by id
+description: ""
+method: GET
+body: {}
+parameters: []
+headers:
+  - name: User-Agent
+    value: insomnia/2023.5.8
+authentication:
+  type: bearer
+  token: "{{ _.token }}"
+metaSortKey: -1705181564269
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

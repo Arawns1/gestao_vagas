@@ -1,0 +1,35 @@
+_id: req_cc6890e450f0451abdfe2ac5c8d55905
+type: Request
+parentId: fld_503b0620330e4319b6c04d8994524f57
+modified: 1705182173771
+created: 1705179049226
+url: "{{ _.baseUrl }}/candidate"
+name: Save Candidate
+description: ""
+method: POST
+body:
+  mimeType: application/json
+  text: |-
+    {
+    	"name":"Gabriel",
+    	"username":"arawns1",
+    	"email":"email2@email.com",
+    	"password":"12345678",
+    	"description":"description",
+    	"curriculum":"curriculo"
+    }
+parameters: []
+headers:
+  - name: Content-Type
+    value: application/json
+  - name: User-Agent
+    value: insomnia/2023.5.8
+authentication: {}
+metaSortKey: -1705179418989
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

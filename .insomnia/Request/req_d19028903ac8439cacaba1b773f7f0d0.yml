@@ -1,0 +1,31 @@
+_id: req_d19028903ac8439cacaba1b773f7f0d0
+type: Request
+parentId: fld_fc312b4b0dc74a3ebf08fc9c5a0d2b69
+modified: 1705183658985
+created: 1705160104705
+url: "{{ _.baseUrl }}/company/auth"
+name: Auth Company
+description: ""
+method: POST
+body:
+  mimeType: application/json
+  text: |-
+    {
+    	"username":"nome_usuario",
+    	"password":"12345678"
+    }
+parameters: []
+headers:
+  - name: Content-Type
+    value: application/json
+  - name: User-Agent
+    value: insomnia/2023.5.8
+authentication: {}
+metaSortKey: -1705160104705
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

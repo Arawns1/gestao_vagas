@@ -1,0 +1,14 @@
+_id: fld_503b0620330e4319b6c04d8994524f57
+type: RequestGroup
+parentId: wrk_0a4fc158cb37450f9e86f688ff6207d3
+modified: 1705184484329
+created: 1705179047380
+name: Candidate
+description: ""
+environment:
+  token: "{% response 'body', 'req_546d16f43cf34da78c97bb1d7c8b750b',
+    'b64::JC5hY2Nlc3NfdG9rZW4=::46b', 'never', 60 %}"
+environmentPropertyOrder:
+  "&":
+    - token
+metaSortKey: -1705179047380
