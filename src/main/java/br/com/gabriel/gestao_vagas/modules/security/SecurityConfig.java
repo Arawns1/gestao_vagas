@@ -20,13 +20,17 @@ public class SecurityConfig {
     @Autowired
     private SecurityCandidateFilter securityCandidateFilter;
 
-    private static final String[] SWAGGER_LIST = {"/swagger-ui/**", "/v3/api-docs/**","/swagger-resources/**"};
+    private static final String[] PERMIT_ALL_LIST = {
+            "/swagger-ui/**",
+            "/v3/api-docs/**",
+            "/swagger-resources/**",
+            "/actuator/**"};
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
         http.csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
                   .requestMatchers("/candidate", "/company", "/company/auth", "/candidate/auth").permitAll()
-                  .requestMatchers(SWAGGER_LIST).permitAll()
+                  .requestMatchers(PERMIT_ALL_LIST).permitAll()
                   .anyRequest().authenticated())
                 .addFilterBefore(securityCandidateFilter, BasicAuthenticationFilter.class)
                 .addFilterBefore(securityCompanyFilter, BasicAuthenticationFilter.class);
