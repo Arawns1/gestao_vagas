@@ -1,0 +1,31 @@
+_id: req_546d16f43cf34da78c97bb1d7c8b750b
+type: Request
+parentId: fld_503b0620330e4319b6c04d8994524f57
+modified: 1705183651244
+created: 1705179422674
+url: "{{ _.baseUrl }}/candidate/auth"
+name: Auth Candidate
+description: ""
+method: POST
+body:
+  mimeType: application/json
+  text: |-
+    {
+    	"username":"arawns1",
+    	"password":"12345678"
+    }
+parameters: []
+headers:
+  - name: Content-Type
+    value: application/json
+  - name: User-Agent
+    value: insomnia/2023.5.8
+authentication: {}
+metaSortKey: -1705179422674
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

@@ -1,0 +1,36 @@
+_id: req_e61a6d07fd36420fa972a165518bc3ca
+type: Request
+parentId: fld_fc312b4b0dc74a3ebf08fc9c5a0d2b69
+modified: 1705091486784
+created: 1705087032466
+url: "{{ _.baseUrl }}/company"
+name: Save Company
+description: ""
+method: POST
+body:
+  mimeType: application/json
+  text: |
+    {
+      "name": "Nome da Empresa",
+      "cnpj": "12345678901234",
+      "username": "nome_usuario",
+      "email": "exemplo@email.com",
+      "password": "12345678",
+      "website": "http://www.exemplo.com",
+      "description": "Uma breve descrição da empresa"
+    }
+parameters: []
+headers:
+  - name: Content-Type
+    value: application/json
+  - name: User-Agent
+    value: insomnia/2023.5.8
+authentication: {}
+metaSortKey: -1705087049070
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

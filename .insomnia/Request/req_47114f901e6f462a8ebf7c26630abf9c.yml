@@ -1,0 +1,34 @@
+_id: req_47114f901e6f462a8ebf7c26630abf9c
+type: Request
+parentId: fld_073830dc6f06463699e2a59bdef979a6
+modified: 1705172291614
+created: 1705088593616
+url: "{{ _.baseUrl }}/jobs"
+name: Save Job
+description: ""
+method: POST
+body:
+  mimeType: application/json
+  text: |-
+    {
+    	"description": "(COM REQUEST) Vaga para pessoa desenvolvedora java",
+    	"level": "level",
+    	"benefits":"Vale alimentação"
+    }
+parameters: []
+headers:
+  - name: Content-Type
+    value: application/json
+  - name: User-Agent
+    value: insomnia/2023.5.8
+authentication:
+  type: bearer
+  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJqYXZhZ2FzIiwic3ViIjoiMjIwNDZhY2YtZWQ2OC00NWU1LWI4NTYtYmJiMjBiOGExMmQyIiwiZXhwIjoxNzA1MTc5NDg0fQ.jJSFQCbkQ-ld6xLA7wYQpRZiTMrHt3huCmVVFQJdZl0
+metaSortKey: -1705088669445
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global
