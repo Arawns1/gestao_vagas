@@ -16,7 +16,6 @@ public class JWTProvider {
         try{
             return JWT.require(algorithm).build().verify(token).getSubject();
         }catch(JWTVerificationException ex){
-            ex.printStackTrace();
             return "";
         }
     }
