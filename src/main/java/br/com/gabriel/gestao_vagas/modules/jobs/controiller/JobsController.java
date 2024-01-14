@@ -3,6 +3,14 @@ package br.com.gabriel.gestao_vagas.modules.jobs.controiller;
 import br.com.gabriel.gestao_vagas.modules.jobs.domain.Jobs;
 import br.com.gabriel.gestao_vagas.modules.jobs.dto.CreateJobDTO;
 import br.com.gabriel.gestao_vagas.modules.jobs.service.JobsService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.ArraySchema;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
@@ -23,6 +31,12 @@ public class JobsController {
     private JobsService jobsService;
     @PostMapping
     @Transactional
+    @Tag(name="Vagas", description = "Informações das vagas")
+    @Operation(summary = "Cadastro de vaga", description = "Essa função é responsável por cadastrar as vagas dentro da empresa")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", content = @Content(schema = @Schema(implementation = Jobs.class)))
+    })
+    @SecurityRequirement(name = "jwt_auth")
     public ResponseEntity<Object> create(@RequestBody @Valid CreateJobDTO jobDTO, UriComponentsBuilder uriBuilder, HttpServletRequest request){
         var companyId = request.getAttribute("company_id");
         Jobs jobs = Jobs.builder()
