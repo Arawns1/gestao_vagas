@@ -3,15 +3,12 @@ package br.com.gabriel.gestao_vagas.modules.candidate.controllers;
 import br.com.gabriel.gestao_vagas.modules.candidate.domain.Candidate;
 import br.com.gabriel.gestao_vagas.modules.candidate.dto.CandidateSaveDTO;
 import br.com.gabriel.gestao_vagas.modules.candidate.dto.ProfileCandidateResponseDTO;
-import br.com.gabriel.gestao_vagas.modules.candidate.repository.CandidateRepository;
+import br.com.gabriel.gestao_vagas.modules.candidate.services.ApplyJobService;
 import br.com.gabriel.gestao_vagas.modules.candidate.services.CandidateService;
 import br.com.gabriel.gestao_vagas.modules.candidate.services.ListAllJobsByFilterService;
 import br.com.gabriel.gestao_vagas.modules.candidate.services.ProfileCandidateService;
-import br.com.gabriel.gestao_vagas.modules.exceptions.UserFoundException;
 import br.com.gabriel.gestao_vagas.modules.jobs.domain.Jobs;
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.Parameter;
-import io.swagger.v3.oas.annotations.enums.ParameterIn;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -28,7 +25,6 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -44,6 +40,10 @@ private ProfileCandidateService profileCandidateService;
 
 @Autowired
 private ListAllJobsByFilterService listAllJobsByFilterService;
+
+@Autowired
+private ApplyJobService applyJobService;
+
     @PostMapping
     @Transactional
     @Operation(summary = "Cadastro de Candidato",
@@ -115,6 +115,23 @@ private ListAllJobsByFilterService listAllJobsByFilterService;
             var result = listAllJobsByFilterService.search(filter);
             return ResponseEntity.ok().body(result);
         } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
+    @PostMapping("/apply/{idJob}")
+    @PreAuthorize("hasRole('candidate')")
+    @SecurityRequirement(name = "jwt_auth")
+    @Operation(summary = "Inscrição do candidato para um vaga",
+            description = "Essa função é responsável por realizar a inscrição do candidato em uma vaga"
+    )
+    public ResponseEntity<Object> apply(@PathVariable UUID idJob, HttpServletRequest request){
+        var idCandidate = request.getAttribute("candidate_id");
+        try{
+            var result = applyJobService.apply(UUID.fromString(idCandidate.toString()), idJob);
+            return ResponseEntity.ok().body(result);
+        }
+        catch(Exception e){
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }

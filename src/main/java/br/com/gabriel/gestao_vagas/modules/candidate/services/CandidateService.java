@@ -7,6 +7,11 @@ import br.com.gabriel.gestao_vagas.modules.exceptions.UserFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.UUID;
 
 @Service
 public class CandidateService {
@@ -15,6 +20,9 @@ public class CandidateService {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
+
+
+
     public Candidate save(CandidateSaveDTO candidate){
         this.candidateRepository
                     .findByUsernameOrEmail(candidate.username(), candidate.email())

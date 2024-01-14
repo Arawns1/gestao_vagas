@@ -25,11 +25,11 @@ import org.springframework.web.util.UriComponentsBuilder;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/jobs")
+@RequestMapping("/company")
 public class JobsController {
     @Autowired
     private JobsService jobsService;
-    @PostMapping
+    @PostMapping("/jobs")
     @Transactional
     @Tag(name="Vagas", description = "Informações das vagas")
     @Operation(summary = "Cadastro de vaga", description = "Essa função é responsável por cadastrar as vagas dentro da empresa")
