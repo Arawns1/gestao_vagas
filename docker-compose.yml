@@ -38,6 +38,16 @@ services:
     ports:
       - 9090:9090
 
+  grafana:
+    container_name: grafana
+    image: grafana/grafana:latest
+    ports:
+      - 3000:3000
+    networks:
+      - gv-network
+    depends_on:
+      - prometheus
+
 networks:
   dev-network:
     driver: bridge
@@ -52,3 +62,4 @@ volumes:
       o: 'bind'
       device: 'D:\docker\novoVolume'
   prometheus_data:
+  grafana_data:
