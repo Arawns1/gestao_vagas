@@ -16,7 +16,7 @@ services:
       - dev-network
 
   spring-app:
-    image: arawns/gestao-vagas-api
+    image: gestao-vagas-api
     container_name: gestao-vagas-api
     ports:
       - 8080:8080
