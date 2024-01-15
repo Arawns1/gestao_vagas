@@ -26,7 +26,11 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
+      - name: Check build status
+        run:
+          echo "Build status: ${{ needs.build.result }}"
       - name: Deploy to production
+        if: needs.build.result == 'success'
         uses: johnbeynon/render-deploy-action@v0.0.8
         with:
           service-id: ${{ secrets.MY_RENDER_SERVICE_ID }}
