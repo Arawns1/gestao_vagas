@@ -27,8 +27,21 @@ services:
     depends_on:
       - db
 
+  prometheus:
+    container_name: prometheus
+    image: prom/prometheus:latest
+    volumes:
+      - ./config/prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus_data:/prometheus
+    networks:
+      - gv-network
+    ports:
+      - 9090:9090
+
 networks:
   dev-network:
+    driver: bridge
+  gv-network:
     driver: bridge
 
 volumes:
@@ -38,3 +51,4 @@ volumes:
       type: 'none'
       o: 'bind'
       device: 'D:\docker\novoVolume'
+  prometheus_data:
