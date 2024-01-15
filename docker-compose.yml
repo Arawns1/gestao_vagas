@@ -15,6 +15,16 @@ services:
     networks:
       - dev-network
 
+  spring-app:
+    image: gestao-vagas-api
+    container_name: gestao-vagas-api
+    ports:
+      - 8080:8080
+    networks:
+      - dev-network
+    depends_on:
+      - db
+
   sonarqube:
     image: sonarqube:9.9.0-community
     container_name: sonarqube
@@ -60,6 +70,6 @@ volumes:
     driver_opts:
       type: 'none'
       o: 'bind'
-      device: 'D:\docker\novoVolume'
+      device: 'C:\docker\novoVolume'
   prometheus_data:
   grafana_data:
